@@ -68,7 +68,7 @@ function setVars() {
 }
 
 function setCustomPer() {
-    if (Number(customPerAmount.value) == 0 || (Number(customPerAmount.value) == '') {
+    if (Number(customPerAmount.value) == 0 || Number(customPerAmount.value) == '') {
         alert('X must be above 0.');
         return
     }
