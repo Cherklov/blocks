@@ -5,6 +5,7 @@ let tallyBlocks = 0;
 let tallyTowers = 0;
 let tallyShelves = 0;
 let tallyBoxes = 0;
+let history = [];
 
 let one = document.querySelector(".plus-one");
 let four = document.querySelector(".plus-four");
@@ -19,6 +20,7 @@ let boxes = document.querySelector(".boxes div");
 let threePer = document.querySelector(".three-per");
 let fourPer = document.querySelector(".four-per");
 let fivePer = document.querySelector(".five-per");
+let undo = document.querySelector(".undo");
 let reset = document.querySelector(".reset");
 let customReset = document.querySelector(".reset-custom");
 let resetAmount = document.querySelector(".reset-amount");
@@ -42,42 +44,52 @@ threePer.addEventListener("click", makeThree);
 fourPer.addEventListener("click", makeFour);
 fivePer.addEventListener("click", makeFive);
 
+undo.addEventListener("click", tallyUndo);
 reset.addEventListener("click", tallyReset);
+
 customReset.addEventListener("click", tallyResetCustom);
 customAdd.addEventListener("click", tallyAddCustom);
 customPerAdd.addEventListener("click", setCustomPer);
 
-
-
 function setVars() {
-    tallyTowers = Math.floor(tallyN / (blocksPerBox * 21));
-    towers.innerText = tallyTowers;
-    tallyShelves = Math.floor(
-      (tallyN % (blocksPerBox * 21)) / (blocksPerBox * 3)
-    );
-    shelves.innerText = tallyShelves;
-    tallyBoxes = Math.floor((tallyN % (blocksPerBox * 3)) / blocksPerBox);
-    boxes.innerText = tallyBoxes;
-    tallyBlocks = tallyN % blocksPerBox;
-    blocks.innerText = tallyBlocks;
-    if (tallyN > 9999) {
-        tallyN = 0;
-        tally.innerText=tallyN;
-        setVars();
-    }
+  tallyTowers = Math.floor(tallyN / (blocksPerBox * 21));
+  towers.innerText = tallyTowers;
+  tallyShelves = Math.floor(
+    (tallyN % (blocksPerBox * 21)) / (blocksPerBox * 3)
+  );
+  shelves.innerText = tallyShelves;
+  tallyBoxes = Math.floor((tallyN % (blocksPerBox * 3)) / blocksPerBox);
+  boxes.innerText = tallyBoxes;
+  tallyBlocks = tallyN % blocksPerBox;
+  blocks.innerText = tallyBlocks;
+  if (tallyN > 9999) {
+    tallyN = 0;
+    tally.innerText = tallyN;
+    setVars();
+  }
 }
 
 function setCustomPer() {
-    if (Number(customPerAmount.value) == 0 || Number(customPerAmount.value) == '') {
-        alert('X must be above 0.');
-        return
-    }
-    blocksPerBox = Number(customPerAmount.value);
-    setVars();
-    customPerAdd.classList.add('active');
-    threePer.classList.remove("active");
-    fourPer.classList.remove("active");
-    fivePer.classList.remove("active");
+  if (
+    Number(customPerAmount.value) == 0 ||
+    Number(customPerAmount.value) == ""
+  ) {
+    alert("X must be above 0.");
+    return;
+  }
+  blocksPerBox = Number(customPerAmount.value);
+  setVars();
+  customPerAdd.classList.add("active");
+  threePer.classList.remove("active");
+  fourPer.classList.remove("active");
+  fivePer.classList.remove("active");
+}
+
+function tallyUndo() {
+  if (history.length == 0) return;
+  tallyN = history.pop();
+  tally.innerText = tallyN;
+  setVars();
 }
 
 function tallyReset() {
@@ -105,35 +117,36 @@ function tallyAddCustom() {
 
 function makeThree() {
   blocksPerBox = 3;
-  customPerAdd.classList.remove('active');
+  customPerAdd.classList.remove("active");
   threePer.classList.add("active");
   fourPer.classList.remove("active");
   fivePer.classList.remove("active");
-  setVars()
+  setVars();
 }
 
 function makeFour() {
   blocksPerBox = 4;
-  customPerAdd.classList.remove('active');
+  customPerAdd.classList.remove("active");
   threePer.classList.remove("active");
   fourPer.classList.add("active");
   fivePer.classList.remove("active");
-  setVars()
+  setVars();
 }
 
 function makeFive() {
   blocksPerBox = 5;
-  customPerAdd.classList.remove('active');
+  customPerAdd.classList.remove("active");
   threePer.classList.remove("active");
   fourPer.classList.remove("active");
   fivePer.classList.add("active");
-  setVars()
+  setVars();
 }
 
 function increment(n) {
+  history.push(tallyN);
   tallyN += n;
   tally.innerText = tallyN;
-  setVars()
+  setVars();
 }
 
 function incrimentOne() {
