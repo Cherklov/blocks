@@ -1,3 +1,5 @@
+/* I know my CSS is bad and needs to be refactored. */
+
 body {
     background-color: #3E6D9C;
     color: #001253;
@@ -101,4 +103,10 @@ ul {
     font-size: 3rem;
     font-family: 'Teko', sans-serif;
     margin: 0 5px;
+}
+
+.iphone {
+    text-align: center;
+    margin: 20px, auto, 0;
+    font-size: 1.5rem;;
 }
