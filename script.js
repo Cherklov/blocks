@@ -29,6 +29,18 @@ let customAmount = document.querySelector(".custom-amount");
 let customPerAdd = document.querySelector(".add-custom-per");
 let customPerAmount = document.querySelector(".custom-per");
 
+// fix pluralization
+
+let labels = document.querySelectorAll(".breakdown span")
+let numbers = document.querySelectorAll(".breakdown div")
+
+function pluralize() {
+  labels[0].innerText = numbers[0].innerText == 1 ? "tower" : "towers"
+  labels[1].innerText = numbers[1].innerText == 1 ? "shelf" : "shelves"
+  labels[2].innerText = numbers[2].innerText == 1 ? "box" : "boxes"
+  labels[3].innerText = numbers[3].innerText == 1 ? "block" : "blocks"
+}
+
 tally.innerText = tallyN;
 towers.innerText = tallyTowers;
 shelves.innerText = tallyShelves;
@@ -62,6 +74,7 @@ function setVars() {
   boxes.innerText = tallyBoxes;
   tallyBlocks = tallyN % blocksPerBox;
   blocks.innerText = tallyBlocks;
+  pluralize()
   if (tallyN > 9999) {
     tallyN = 0;
     tally.innerText = tallyN;
