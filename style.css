@@ -1,6 +1,7 @@
 body {
     background-color: #3E6D9C;
     color: #001253;
+    font-family: 'Teko', sans-serif;
 }
 
 .main-container {
@@ -10,7 +11,26 @@ body {
 
 h1 {
     font-size: 6rem;
-    font-family: 'Teko', sans-serif;
+}
+
+.previous {
+    height: 200px;
+    width: 50px;
+    padding-left: 0;
+}
+
+.previous li {
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prev {
+    font-size: 2rem;
+}
+
+.plus {
+    font-size: 2rem;
 }
 
 .reset, .undo {
@@ -20,12 +40,10 @@ h1 {
     border-radius: 5px;
     background-color: #FD841F;
     font-size: 1.5rem;
-    font-family: 'Teko', sans-serif;
 }
 
 .breakdown li div {
     font-size: 3rem;
-    font-family: 'Teko', sans-serif;
 }
 
 .large-buttons {
@@ -44,7 +62,6 @@ h1 {
     border-radius: 5px;
     background-color: #FD841F;
     font-size: 3rem;
-    font-family: 'Teko', sans-serif;
 }
 
 .large-buttons button:hover, .reset:hover, .undo:hover {
@@ -54,7 +71,6 @@ h1 {
 .custom-per {
     width: 150px;
     font-size: 3rem;
-    font-family: 'Teko', sans-serif;
     position: relative;
     left: 75px;
     top: 65px;
@@ -71,7 +87,6 @@ h1 {
     border-radius: 5px;
     background-color: #FD841F;
     font-size: 3rem;
-    font-family: 'Teko', sans-serif;
 }
 
 .more-buttons {
@@ -93,13 +108,11 @@ ul {
     height: 70px;
     border-radius: 5px;
     background-color: #FD841F;
-    font-family: 'Teko', sans-serif;
 }
 
 .form-bottom {
     height: 57px;
     font-size: 3rem;
-    font-family: 'Teko', sans-serif;
     margin: 0 5px;
 }
 
