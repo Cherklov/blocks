@@ -6,6 +6,7 @@ let tallyTowers = 0;
 let tallyShelves = 0;
 let tallyBoxes = 0;
 let history = [];
+let lastButtons = [];
 
 let one = document.querySelector(".plus-one");
 let four = document.querySelector(".plus-four");
@@ -16,6 +17,9 @@ let towers = document.querySelector(".towers div");
 let shelves = document.querySelector(".shelves div");
 let blocks = document.querySelector(".blocks div");
 let boxes = document.querySelector(".boxes div");
+
+let previousList = document.querySelectorAll(".prev")
+let plusList = document.querySelectorAll(".plus")
 
 let threePer = document.querySelector(".three-per");
 let fourPer = document.querySelector(".four-per");
@@ -33,6 +37,16 @@ let customPerAmount = document.querySelector(".custom-per");
 
 let labels = document.querySelectorAll(".breakdown span")
 let numbers = document.querySelectorAll(".breakdown div")
+
+function populatePrev() {
+  for (let i = 0; i < 4; i++) {
+    if (history.length < i + 1) break;
+    previousList[i].innerText = history[history.length-(i+1)];
+    plusList[i].innerText = "+" + lastButtons[lastButtons.length-(i+1)]
+  }
+}
+
+document.addEventListener("click", ()=>console.log(lastButtons, history))
 
 function pluralize() {
   labels[0].innerText = numbers[0].innerText == 1 ? "tower" : "towers"
@@ -74,12 +88,7 @@ function setVars() {
   boxes.innerText = tallyBoxes;
   tallyBlocks = tallyN % blocksPerBox;
   blocks.innerText = tallyBlocks;
-  pluralize()
-  if (tallyN > 9999) {
-    tallyN = 0;
-    tally.innerText = tallyN;
-    setVars();
-  }
+  pluralize();
 }
 
 function setCustomPer() {
@@ -156,10 +165,13 @@ function makeFive() {
 }
 
 function increment(n) {
+  if (tallyN + n > 9999) return;
   history.push(tallyN);
   tallyN += n;
   tally.innerText = tallyN;
+  lastButtons.push(n)
   setVars();
+  populatePrev();
 }
 
 function incrimentOne() {
