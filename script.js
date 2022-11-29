@@ -46,8 +46,6 @@ function populatePrev() {
   }
 }
 
-document.addEventListener("click", ()=>console.log(lastButtons, history))
-
 function pluralize() {
   labels[0].innerText = numbers[0].innerText == 1 ? "tower" : "towers"
   labels[1].innerText = numbers[1].innerText == 1 ? "shelf" : "shelves"
